@@ -29,7 +29,7 @@
     <hr />
 
     <footer>
-      &copy; <?php echo date('Y'); ?> FaaSter
+      &copy; 2017 FaaSter
     </footer>
   </body>
 </html>
