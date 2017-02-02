@@ -37,9 +37,27 @@ require_once '_include/authenticate-user.php';
       <h2>Mes fonctions</h2>
 
       <ul>
+        <?php
+                
+                  $sql = 'SELECT *
+                          FROM `users`, `functions`
+                          WHERE users.id = functions.user_id
+                            AND users.id = ?';
 
-        <!-- Ici, il faut faire un SELECT avec SQL pour obtenir la liste des fonctions (dans une variable $functions).
-        Puis, il faut faire une boucle for afin d'afficher un lien pour chacune, dynamiquement. -->
+                  $req = $db->prepare($sql);
+                  $req->execute(array($user['id']));
+
+                  
+                  while ($function = $req->fetch())
+                  {
+                    ?>
+
+        <li><a href="function_edit.php?my_token=<?php echo $user['token']; ?>&function_id=<?php echo $function['id']; ?>"><?php echo $function['title']; ?></a></li>
+
+
+                    <?php
+                  }
+        ?>
 
         <li><a href="function_edit.php?my_token=<?php echo $user['token']; ?>&function_id=1">Ma fonction</a></li>
         <li><a href="function_edit.php?my_token=<?php echo $user['token']; ?>&function_id=2">Autre test</a></li>
