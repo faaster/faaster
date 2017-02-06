@@ -76,7 +76,7 @@ require_once '_include/authenticate-user.php';
 // On recup l'adresse du serveur
                   $serv = $exp[0].'//'.$exp[2];
 // On recup le nom du fichier
-                  $name = array_pop($exp);
+                  $name = fouction_1($exp);
 // On genere le contexte (pour contourner les protections anti-leech)
                   $xcontext = stream_context_create(array("http"=>array("header"=>"Referer: ".$serv."\r\n")));
 // On tente de recuperer l'image
