@@ -65,6 +65,11 @@ $function = $r->fetch();
           <input type="submit" value="Mettre à jour la fonction">
         </div>
       </form>
+
+      <hr />
+
+      <a title="Lien URL ///" href="execute.php?function_id=<?php echo $function['id']; ?>">Ici on met le lien.</a>
     </article>
   </body>
 </html>
+
