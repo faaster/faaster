@@ -58,11 +58,6 @@
                       <?php
                     }
           ?>
-                      <?php
-                             $ma_variable = str_replace('d', 'Y', 'd,m,Y');
-
-                              echo $ma_variable;
-          ?>
 
           <li><a href="function_edit.php?my_token=<?php echo $user['token']; ?>&function_id=1">Ma fonction</a></li>
           <li><a href="function_edit.php?my_token=<?php echo $user['token']; ?>&function_id=2">Autre test</a></li>
