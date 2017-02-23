@@ -66,6 +66,6 @@
 
         <a href="function_new.php?my_token=<?php echo $user['token']; ?>">Nouvelle fonction</a>
       </article>
- 
+
     </body>
   </html>
