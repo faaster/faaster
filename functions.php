@@ -10,6 +10,7 @@
     <head>
       <meta charset="utf-8" />
       <title>FaaSter</title>
+      <link href="style.css" rel="stylesheet" />
     </head>
 
     <body>
@@ -38,30 +39,24 @@
 
         <ul>
           <?php
+          $sql = 'SELECT *
+                  FROM `users`, `functions`
+                  WHERE users.id = functions.user_id
+                    AND users.id = ?';
 
-                    $sql = 'SELECT *
-                            FROM `users`, `functions`
-                            WHERE users.id = functions.user_id
-                              AND users.id = ?';
+          $req = $db->prepare($sql);
+          $req->execute(array($user['id']));
 
-                    $req = $db->prepare($sql);
-                    $req->execute(array($user['id']));
-
-
-                    while ($function = $req->fetch())
-                    {
-                      ?>
-
-          <li><a href="function_edit.php?my_token=<?php echo $user['token']; ?>&function_id=<?php echo $function['id']; ?>"><?php echo $function['title']; ?></a></li>
-
-
-                      <?php
-                    }
+          while ($function = $req->fetch())
+          {
+            ?>
+              <li>
+                <a href="function_edit.php?my_token=<?php echo $user['token']; ?>&function_id=<?php echo $function['id']; ?>"><?php echo $function['title']; ?></a>
+                (<a title="Exécuter" href="execute.php?function_id=<?php echo $function['id']; ?>" target="_blank">exécuter</a>)
+              </li>
+            <?php
+          }
           ?>
-
-          <li><a href="function_edit.php?my_token=<?php echo $user['token']; ?>&function_id=1">Ma fonction</a></li>
-          <li><a href="function_edit.php?my_token=<?php echo $user['token']; ?>&function_id=2">Autre test</a></li>
-          <li><a href="function_edit.php?my_token=<?php echo $user['token']; ?>&function_id=3">Opération (test)</a></li>
         </ul>
 
         <a href="function_new.php?my_token=<?php echo $user['token']; ?>">Nouvelle fonction</a>

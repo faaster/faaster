@@ -4,6 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <title>FaaSter</title>
+    <link href="style.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -24,6 +25,7 @@
 
     <article>
       <h2>Bienvenue sur FaaSter !</h2>
+      <p><img src="image/logo.png"></p>
     </article>
 
     <hr />

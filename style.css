@@ -1,0 +1,12 @@
+header h1 {
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+
+textarea {
+  width: 400px;
+  height: 150px;
+}
+
+input {
+  width: 400px;
+}

@@ -10,11 +10,11 @@ if (!isset($_GET['function_id'])) {
 // Mise a jour du code de la fonction.
 
 $sql = 'UPDATE functions
-        SET code = ?
+        SET code = ?, title = ?
         WHERE id = ?';
 
 $r = $db->prepare($sql);
-$r->execute(array($_POST['code'], $_GET['function_id']));
+$r->execute(array($_POST['code'], $_POST['title'], $_GET['function_id']));
 $r->closeCursor();
 
 // Redirection vers la page d'accueil pour lister les fonctions du développeur.

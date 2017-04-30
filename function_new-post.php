@@ -15,6 +15,6 @@ $req->execute(array(
 ));
 
 // Redirection vers la page d'accueil pour lister les fonctions du développeur.
-header('Location: functions.php?my_token=' . $user['token'] . '&function_id=' . $_GET['function_id']);
+header('Location: functions.php?my_token=' . $user['token']);
 
 ?>

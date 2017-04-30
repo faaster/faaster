@@ -9,6 +9,7 @@
   <body>
     <header>
       <h1>FaaSter</h1>
+      <link href="style.css" rel="stylesheet" />
     </header>
 
     <hr />

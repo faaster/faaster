@@ -30,6 +30,7 @@ $function = $r->fetch();
   <head>
     <meta charset="utf-8" />
     <title>FaaSter</title>
+    <link href="style.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -54,21 +55,23 @@ $function = $r->fetch();
 
       <form action="function_edit-post.php?my_token=<?php echo $user['token']; ?>&function_id=<?php echo $function['id']; ?>" method="post">
         <div>
-          <input id="title" name="title" value="<?php echo $function['title']; ?>" type="text" placeholder="Titre" required>
+          <label>
+            Titre<br />
+            <input id="title" name="title" value="<?php echo $function['title']; ?>" type="text" placeholder="Titre" required>
+          </label>
         </div>
 
         <div>
-          <textarea name="code" placeholder="Code PHP"><?php echo $function['code']; ?></textarea>
+          <label>
+            Code PHP<br />
+            <textarea name="code" placeholder="Code PHP" rows="10"><?php echo $function['code']; ?></textarea>
+          </label>
         </div>
 
         <div>
           <input type="submit" value="Mettre à jour la fonction">
         </div>
       </form>
-
-      <hr />
-
-      <a title="Lien URL" href="execute.php?function_id=<?php echo $function['id']; ?>">Ici on met le lien.</a>
     </article>
   </body>
 </html>

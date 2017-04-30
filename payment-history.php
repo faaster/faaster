@@ -28,6 +28,7 @@ if (isset($_GET['function_id'])) {
   <head>
     <meta charset="utf-8" />
     <title>FaaSter</title>
+    <link href="style.css" rel="stylesheet" />
   </head>
 
   <body>

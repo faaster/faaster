@@ -10,6 +10,7 @@ require_once '_include/authenticate-user.php';
   <head>
     <meta charset="utf-8" />
     <title>FaaSter</title>
+    <link href="style.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -34,12 +35,17 @@ require_once '_include/authenticate-user.php';
 
       <form action="function_new-post.php?my_token=<?php echo $user['token']; ?>" method="post">
         <div>
-          <input id="title" name="title" type="text" placeholder="Titre" required>
+          <label>
+            Titre<br />
+            <input id="title" name="title" type="text" placeholder="Titre" required>
+          </label>
         </div>
 
         <div>
-          <textarea name="code" placeholder="Code PHP">
-          </textarea>
+          <label>
+            Code PHP<br />
+            <textarea name="code" placeholder="Code PHP" rows="10"></textarea>
+          </label>
         </div>
 
         <div>
