@@ -35,4 +35,4 @@ $r->closeCursor();
 
 header('Location: functions.php?my_token=' . $token);
 
-?>
+?> 
