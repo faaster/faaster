@@ -2,24 +2,6 @@
 
 require_once '_include/authenticate-user.php';
 
-// Si il existe une demande de lecture du code.
-if (isset($_GET['function_id'])) {
-  // Chargement du code de la fonction...
-  $sql = 'SELECT *
-          FROM `functions`
-          WHERE id = ?';
-
-  $r = $db->prepare($sql);
-
-  $r->execute(array($_GET['function_id']));
-
-  if ($r->rowCount() != 1) {
-    exit('Cette fonction est introuvable.');
-  }
-
-  $function = $r->fetch();
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -51,9 +33,40 @@ if (isset($_GET['function_id'])) {
     <article>
       <h2>Historique des paiements</h2>
 
-      <p>
-        Mois de janvier 2017.
-      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>month</th>
+            <th>year</th>
+            <th>amount</th>
+            <th>paid_at</th>
+          </tr>
+        </thead>
+
+        <?php
+        $sql = 'SELECT *
+                FROM `users`, `invoices`
+                WHERE users.id = invoices.user_id
+                  AND users.id = ?';
+
+        $req = $db->prepare($sql);
+        $req->execute(array($user['id']));
+
+        while ($invoice = $req->fetch())
+        {
+          ?>
+            <tr>
+              <td><?php echo $invoice['id']; ?></td>
+              <td><?php echo $invoice['month']; ?></td>
+              <td><?php echo $invoice['year']; ?></td>
+              <td><?php echo $invoice['amount']; ?></td>
+              <td><?php echo $invoice['paid_at']; ?></td>
+            </tr>
+          <?php
+        }
+        ?>
+      </table>
     </article>
   </body>
 </html>

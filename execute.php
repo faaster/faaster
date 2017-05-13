@@ -26,39 +26,29 @@ $end_time = microtime(TRUE);
 $total_time = $end_time - $start_time;
 
 $total_time = round($total_time, 4, PHP_ROUND_HALF_UP);
+
 ?>
 
 <dl>
   <dt>Résultat</dt>
   <dd><code><?php echo $result ?></code></dd>
 
-  <dt>Durée d'exécution</dt>
+  <dt>Temps de traitement</dt>
   <dd><?php echo $total_time; ?> secondes</dd>
 </dl>
 
 <?php
 
+// Sauvegarde du temps de traitement de la fonction.
+$sql = 'INSERT INTO instances(params, duration, created_at, function_id)
+        VALUES(:params, :duration, :created_at, :function_id)';
 
-
-// @todo
-
-// Fonction dans la table invoices.
-
-// date_default_timezone_set('Europe/Paris');
-//
-// $date = date("d-m-Y");
-//
-// $sql = 'INSERT INTO invoices(id, params,duration,created_at,function_id)
-//         VALUES(:id, params,duration,created_at,function_id)';
-//
-// $req = $db->prepare($sql);
-// $req->execute(array(
-// 	'id'    => $_POST['id'],
-//   'function_id'  => $function['id'],
-//   'duration'    =>  $total_time,
-//   'created_at'    =>  $date,
-// ));
-
-
+$req = $db->prepare($sql);
+$req->execute(array(
+	'params'      => $_SERVER['QUERY_STRING'],
+	'duration'    => $total_time,
+  'created_at'  => date('Y-m-d H:i:s'),
+	'function_id' => $function['id']
+));
 
 ?>
