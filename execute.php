@@ -39,6 +39,8 @@ $total_time = round($total_time, 4, PHP_ROUND_HALF_UP);
 
 <?php
 
+date_default_timezone_set('UTC');
+
 // Sauvegarde du temps de traitement de la fonction.
 $sql = 'INSERT INTO instances(params, duration, created_at, function_id)
         VALUES(:params, :duration, :created_at, :function_id)';
@@ -47,7 +49,7 @@ $req = $db->prepare($sql);
 $req->execute(array(
 	'params'      => $_SERVER['QUERY_STRING'],
 	'duration'    => $total_time,
-  'created_at'  => date('Y-m-d H:i:s'),
+	'created_at'  => date('Y-m-d H:i:s'),
 	'function_id' => $function['id']
 ));
 
